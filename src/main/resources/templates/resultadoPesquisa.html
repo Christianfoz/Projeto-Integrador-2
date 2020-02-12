@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Resultado da Pesquisa</title>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+</head>
+<body>
+<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+    <header th:insert="header.html"> </header>
+  </th:block>
+  <th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+  	<header th:insert = "headerUser.html"></header>
+  </th:block>
+<div class = "row">
+<div class = "col-md-2"></div>
+<div class = "col-md-8 conteudo">
+<p class= "h2 text-center tit" th:text="'Resultados da Pesquisa'">
+
+
+<table class="table table-borderless">
+		<thead>
+			<tr>
+				<th>Capa</th>
+				<th>Titulo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="jogo : ${jogos}">
+				<td><img th:src ="${jogo.foto}" class = "capa"></img>
+				<td><a th:href="@{/detalharJogo/{id}(id=${jogo.idJogo})}"> <span th:text="${jogo.titulo}"></span></a></td>								
+			</tr>
+	
+	</table>
+	</th:block>
+	</div>
+	<div class = "col-md-2"></div>
+	</div>
+</body>
+</html>

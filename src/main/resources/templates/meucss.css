@@ -1,0 +1,134 @@
+body {
+	background-image: url("fundo.jpg");
+	background-repeat: repeat;
+}
+
+.conteudo {
+	background-color: white;
+}
+
+.snorlax {
+	width: 1000px;
+	height: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.lol {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.tit {
+	margin-top: 100px;
+}
+
+.botoes {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	justify-content: center;
+	text-align: center;
+}
+
+.login {
+	margin-top: 200px;
+}
+
+.form {
+	background-color: white;
+}
+
+.btnLogar {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	justify-content: center;
+}
+
+label {
+	margin-top: 10px;
+}
+
+p {
+	text-align: center;
+}
+
+.divAjax {
+	display: none;
+}
+
+input {
+	margin-top: 10px;
+}
+
+.principal {
+	background-color: white;
+}
+
+.user_name {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.comments-list .media {
+	border-bottom: 1px dotted #ccc;
+}
+
+.gambita {
+	visibility: hidden;
+}
+
+.comment-wrapper .panel-body {
+	max-height: 650px;
+	overflow: auto;
+}
+
+.comment-wrapper .media-list .media img {
+	width: 64px;
+	height: 64px;
+	border: 2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+	border-bottom: 1px dashed #efefef;
+	margin-bottom: 25px;
+}
+
+.capa {
+	height: 321px;
+	width: 225px;
+}
+
+.table {
+	background-color: white;
+}
+
+caption {
+	text-align: center;
+}
+
+.butao {
+	margin-left: 10px;
+}
+
+.hey_listen {
+	background-color: blue;
+}
+
+.imagem_perfil {
+	margin-top: 100px;
+}
+
+.data {
+	margin-top: 10px;
+}
+
+.capa-jogo {
+	height: 225px;
+	width: 225px;
+}
+
+.topper {
+	margin-top: 10px;
+}

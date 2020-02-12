@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+
+<meta charset="UTF-8">
+<style>
+	body{
+		background-image: url("https://mypst.com.br/new/media/img/bg8.jpg");
+		background-repeat: repeat;
+	}
+	
+	.conteudo{
+		background-color:white;
+	}
+	
+	.snorlax{
+		width:1000px;
+		height:1000px;
+		margin-left: auto;
+    	margin-right: auto;
+		display: block;
+	}
+	
+	.lol{
+		margin-top: 10px;
+		text-align: center;
+	}
+</style>
+<title>Acesso Negado</title>
+</head>
+<body>
+<div class = "row">
+	<div class = "col-md-2"></div>
+	<div class = "col-md-8 conteudo">
+	<p class = "h2 lol">Oh Não!</p>
+	<img class = "snorlax" src = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/143.png"></img>
+	<p class = "h2 lol"> Um Snorlax selvagem está impedindo sua passagem pois você é um usuário comum!</p>
+	</div>
+	<div class = "col-md-2"></div>
+</div>
+<footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

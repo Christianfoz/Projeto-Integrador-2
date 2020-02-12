@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	
+<meta charset="UTF-8">
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+<title>Perfil</title>
+</head>
+<body>
+<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+    <header th:insert="header.html"> </header>
+  </th:block>
+  <th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+  	<header th:insert = "headerUser.html"></header>
+  </th:block>
+	<div class = "row">
+		<div class = "col-md-4"></div>
+		<div class = "col-md-4 conteudo">
+		<img th:src="@{'../' + ${usuarioPerfil.foto}}" class="rounded-circle z-depth-0 imagem_perfil border border-secondary" height="300">
+		<p th:text="${usuarioPerfil.apelido}" class = "h2 text-center ap" ></p>
+		<p class = "h6 text-center data" th:text="${usuarioPerfil.tipoUsuario.tipo}">
+	<p class= "h2 text-center tit" th:text="'Jogos Jogados Pelo  ' + ${usuarioPerfil.tipoUsuario.tipo} + ' ' + ${usuarioPerfil.apelido}"> 
+	<br>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Capa</th>
+				<th>Titulo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="jogo : ${jogos}">
+				<td><img th:src ="@{'../' + ${jogo.foto}}" class = "capa-jogo"></img>
+				<td><a th:href="@{/detalharJogo/{id}(id=${jogo.idJogo})}"> <span th:text="${jogo.titulo}"></span></a></td>							
+				
+			</tr>
+		</tbody>
+	
+	</table>
+	<p class= "h2 text-center tit" th:text="'Reviews Feitas Pelo ' + ${usuarioPerfil.tipoUsuario.tipo}  + ' '  + ${usuarioPerfil.apelido}"> 
+	
+	<br>
+	<div th:each = "review: ${reviews} "class="media">
+	<div class="row bootstrap snippets">
+    <div class="">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <ul class="media-list">
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img th:src="@{'../' + ${usuarioPerfil.foto}}" alt="" class="rounded-circle z-depth-0" height="35">
+                            </a>
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted" th:text = "${review.dataCadastroReview}"></small>
+                                </span>
+                                <a class="h6" th:text = "${usuarioPerfil.apelido}" th:href = "@{/perfil/{id}(id=${usuarioLogado.idUsuario})}"></a>
+                                <p th:text = "${review.textoReview}">
+                                <p th:text = "'Jogo analisado : ' + ${review.jogo.titulo}" class = "h6 bold">
+								<p th:text = "'Nota dada : ' + ${review.nota}">                             
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>
+
+
+	<br>
+	<p class= "h2 text-center tit" th:text="'Sugestões aceitas feito pelo ' + ${usuarioPerfil.tipoUsuario.tipo} + ' '+   ${usuarioPerfil.apelido}">
+	<div th:each = "sugestao: ${sugestoes} "class="media">
+	<div class="row bootstrap snippets">
+    <div class="">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <ul class="media-list">
+                        <li class="media">
+                                <img th:src="@{'../' + ${usuarioPerfil.foto}}" class="rounded-circle z-depth-0" height="35">
+                            <div class="media-body">
+                                
+                                <a class="h6" th:text = "${usuarioPerfil.apelido}" th:href = "@{/perfil/{id}(id=${usuarioPerfil.idUsuario})}"></a>
+                                <p th:text = "${sugestao.textoSugestao}">
+                             
+                                </p>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>
+	</div>
+	<div class = "col-md-4"></div>
+	</div>
+	
+
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

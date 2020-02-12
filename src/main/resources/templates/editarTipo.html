@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Edição de Tipo de Usuário</title>
+</head>
+<body>
+<header th:insert="header.html"></header>
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 form">
+				<form method="post" class="form-login">
+					<label for = "nome">Tipo de Usuário</label>
+					<input type="text" th:value="${tipousuario.tipo}" name="tipo" id = "nome"  class = "form-control inp"/>
+					<div class="botoes">
+						<a class="btn btn-danger" href="../gerenciarPlataformas" role="button">Cancelar</a>
+						<button class="btn btn-primary " type="submit">Enviar</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

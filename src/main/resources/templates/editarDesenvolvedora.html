@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Edição de Desenvolvedora</title>
+</head>
+<body>
+  <header th:insert="header.html"></header>
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<p class= "h1 text-center tit" th:text= "'Edição da Desenvolvedora ' + ${desenvolvedora.nomeDesenvolvedora}"></p>
+				<form method="post" class="form-login form">
+					<label for = "edit">Desenvolvedora</label>
+					<input type="text" th:value="${desenvolvedora.nomeDesenvolvedora}" name="nomeDesenvolvedora" id = "desenvolvedora"  class = "form-control inp"/>
+					<div class="botoes">
+						<a class="btn btn-danger" href="../index" role="button">Cancelar</a>
+						<button class="btn btn-primary " type="submit">Enviar</button>
+					</div>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		  <footer th:insert="footer.html"> </footer>
+	
+
+</body>
+</html>

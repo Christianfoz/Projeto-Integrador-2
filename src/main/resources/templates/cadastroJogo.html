@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css" th:href="bootstrap.min.css">
+<link rel="stylesheet" type="text/css" th:href="meucss.css">
+
+<script src="ajax.js"></script>
+<meta charset="UTF-8">
+<title>Cadastro de Jogo</title>
+</head>
+<body>
+	<header th:insert="header.html"></header>
+
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4  principal">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<form method="post" id="formulario" enctype="multipart/form-data"
+				class="form-login">
+				<label for="titulo" class="label">Jogo</label> <input type="text"
+					value="" name="titulo" id="titulo" class="form-control inp" /> <label
+					for="file" class="label">Capa</label> <input type="file"
+					name="file" id="file" class="form-control-file" /> <label
+					for="ano" class="label">Ano</label> <input type="text" value=""
+					name="ano" id="ano" class="form-control inp" /> <label for="info"
+					class="label">Informações</label>
+				<textarea class="form-control" name="info" rows="5" id="info"></textarea>
+				<label for="classificacao" class="label">Classificação
+					Indicativa</label> <select th:field="*{classificacao.idClassificacao}"
+					form="formulario" name="classificacao" id="classificacao"
+					class="custom-select">
+					<option th:each="classificacao : ${classificacoes}"
+						th:value="${classificacao.idClassificacao}"
+						th:text="${classificacao.nomeClassificacao}"></option>
+				</select> <a class="btn btn-primary btn-primary botoes"
+					onclick="mostrarFormClassificacao()"><span
+					class="glyphicon glyphicon-plus"></span> Adicionar Classificação</a> <br>
+
+				<label class="label" for="diretor">Diretor</label> <select
+					th:field="*{diretor.idDiretor}" form="formulario" name="diretor"
+					id="diretor" class="custom-select">
+					<option th:each="diretor : ${diretores}"
+						th:value="${diretor.idDiretor}" th:text="${diretor.nomeDiretor}"></option>
+				</select> <a class="btn btn-primary btn-primary botoes"
+					onclick="mostrarFormDiretor()"><span
+					class="glyphicon glyphicon-plus"></span> Adicionar Diretor</a><br>
+				<label for="desenvolvedora" class="label">Desenvolvedora</label> <select
+					th:field="*{desenvolvedora.idDesenvolvedora}" form="formulario"
+					name="desenvolvedora" id="desenvolvedora" class="custom-select">
+					<option th:each="desenvolvedora : ${desenvolvedoras}"
+						th:value="${desenvolvedora.idDesenvolvedora}"
+						th:text="${desenvolvedora.nomeDesenvolvedora}"></option>
+				</select> <a class="btn btn-primary btn-primary botoes"
+					onclick="mostrarFormDesenvolvedora()"><span
+					class="glyphicon glyphicon-plus"></span> Adicionar Desenvolvedora</a><br>
+				<label for="modoJogo" class="label">Modo de Jogo</label> <select
+					th:field="*{modoJogo.idModo}" form="formulario" name="modoJogo"
+					id="modoJogo" class="custom-select">
+					<option th:each="modoJogo : ${modoJogos}"
+						th:value="${modoJogo.idModo}" th:text="${modoJogo.nomeModo}">
+					</option>
+				</select> <a class="btn btn-primary btn-primary botoes"
+					onclick="mostrarFormModoJogo()"><span
+					class="glyphicon glyphicon-plus"></span> Adicionar Modo de Jogo</a><br>
+				<label for="plataformas" class="label">Plataformas</label>
+				<ul id="plataformas">
+					<li th:each="plataforma : ${plataformas}"><input
+						type="checkbox" name="plataformas"
+						th:value="${plataforma.idPlataforma}" class="form-check-input" />
+						<label th:text="${plataforma.nomePlataforma}"></label></li>
+				</ul>
+				<a class="btn btn-primary btn-primary botoes"
+					onclick="mostrarFormPlataforma()"><span
+					class="glyphicon glyphicon-plus"></span> Adicionar Plataforma</a><br>
+				<label for="generos" class="label">Gêneros</label>
+				<ul id="generos">
+					<li th:each="genero : ${generos}"><input type="checkbox"
+						name="generos" th:value="${genero.idGenero}"
+						class="form-check-input" /> <label th:text="${genero.nomeGenero}"></label></li>
+				</ul>
+				<a class="btn btn-primary btn-primary botoes"
+					onclick="mostrarFormGenero()"><span
+					class="glyphicon glyphicon-plus"></span> Adicionar Genero</a><br>
+				<div class="botoes">
+					<a class="btn btn-danger" href="index" role="button">Cancelar</a>
+					<button id="formbutton6" class="btn btn-primary " type="submit">Enviar</button>
+				</div>
+
+			</form>
+			<div id="divClassificacaoAJAX" class="divAjax">
+				<hr>
+				<p class="h3">Cadastro de Classificacao</p>
+				<form method="POST" th:action="@{/adicionarClassificacaoAJAX}"
+					id="formulario6">
+					<input class="form-control" type="search"
+						placeholder="Insira o nome da Classificação" aria-label="Search"
+						name="nomeClassificacao" id="nomeClassificacao"> <br>
+				</form>
+				<hr>
+			</div>
+			<div id="divDesenvolvedoraAJAX" class="divAjax">
+				<hr>
+				<p class="h3">Cadastro de Desenvolvedora</p>
+				<form method="POST" th:action="@{/adicionarDesenvolvedoraAJAX}"
+					id="formulario7">
+					<input class="form-control" type="search"
+						placeholder="Insira o nome da Desenvolvedora" aria-label="Search"
+						name="nomeDesenvolvedora"> <a type="submit"
+						id="formbutton7" class="btn btn-outline-light butao">Enviar</a>
+				</form>
+				<hr>
+			</div>
+
+			<div id="divDiretorAJAX" class="divAjax">
+				<hr>
+				<p class="h3">Cadastro de Diretor</p>
+				<form method="POST" th:action="@{/adicionarDiretorAJAX}"
+					id="formulario8">
+					<input class="form-control" type="search"
+						placeholder="Insira o nome do Diretor" aria-label="Search"
+						name="nomeDiretor">
+					<button type="submit" class="btn btn-outline-light butao">Enviar</button>
+				</form>
+				<hr>
+			</div>
+
+			<div id="divGeneroAJAX" class="divAjax">
+				<hr>
+				<p class="h3">Cadastro de Genero</p>
+				<form method="POST" th:action="@{/cadastrarGeneroAJAX}"
+					id="formulario9">
+					<input class="form-control" type="search"
+						placeholder="Insira o nome do Genero" aria-label="Search"
+						name="nomeGenero">
+					<button type="submit" class="btn btn-outline-light butao">Enviar</button>
+				</form>
+				<hr>
+			</div>
+			<div id="divPlataformaAJAX" class="divAjax">
+				<hr>
+				<p class="h3">Cadastro de Plataforma</p>
+				<form method="POST" th:action="@{/cadastrarPlataformaAJAX}"
+					id="formulario10">
+					<input class="form-control" type="search"
+						placeholder="Insira o nome da Plataforma" aria-label="Search"
+						name="nomePlataforma"> <input class="form-control"
+						type="search"
+						placeholder="Insira o ano de lançamento da plataforma"
+						aria-label="Search" name="anolancamento">
+					<button type="submit" class="btn btn-outline-light butao">Enviar</button>
+				</form>
+				<hr>
+			</div>
+			<div id="divModoJogoAJAX" class="divAjax">
+				<hr>
+				<p class="h3">Cadastro de Modo de Jogo</p>
+				<form method="POST" th:action="@{/cadastrarModoJogoAJAX}"
+					id="formulario11">
+					<input class="form-control" type="search"
+						placeholder="Insira o Modo de Jogo" aria-label="Search"
+						name="nomeModo">
+					<button type="submit" class="btn btn-outline-light butao">Enviar</button>
+				</form>
+				<hr>
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<footer th:insert="footer.html"> </footer>
+</body>
+</html>

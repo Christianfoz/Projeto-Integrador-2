@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Gerenciamento de Modos de Jogo</title>
+
+</head>
+<body>
+<header th:insert="header.html"></header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+
+				<table class="table">
+				<th:block th:include="mensagemSucesso.html"></th:block>
+					<caption>Lista de Modos de Jogo Disponíveis</caption>
+
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Modo de Jogo</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="modoJogo : ${modoJogos}">
+							<td><span th:text="${modoJogo.idModo}"></span>
+							<td><a
+								th:href="@{/detalharModoJogo/{id}(id=${modoJogo.idModo})}">
+									<span th:text="${modoJogo.nomeModo}"></span>
+							</a></td>
+							<td><a th:href="@{/editarModo/{id}(id=${modoJogo.idModo})}"><span
+									th:text="Editar"></span></a></td>
+							<td><a th:href="@{/excluirModo/{id}(id=${modoJogo.idModo})}"><span
+									th:text="Excluir"></span></a></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+				
+				<div class="botoes">
+					<a class="btn btn-danger" href="index" role="button">Voltar</a>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+		  <footer th:insert="footer.html"> </footer>
+	
+
+</body>
+</html>

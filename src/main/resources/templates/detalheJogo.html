@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Detalhes do Jogo</title>
+</head>
+<body>
+	<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+		<header th:insert="header.html"> </header>
+	</th:block>
+	<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+		<header th:insert="headerUser.html"></header>
+	</th:block>
+	<div class="row">
+		<div class="col md-2"></div>
+		<div class="col md-8  conteudo">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<br> <img th:src="@{'../' + ${jogo.foto}}" class="img-thumbnail capa"></img>
+			<p th:text="${jogo.titulo}" class="h2 text-center"></p>
+			<br>
+			 <th:block th:if="${validador == 0}">
+				<a class="h6"
+					th:href="@{/cadastrarJogoNaSuaLista/{id}(id=${jogo.idJogo})}">Adicionar
+					a sua lista de jogados</a>
+			</th:block>
+			<th:block th:if="${validador > 0}">
+				<p class = "h3">Jogo já em sua lista</p>
+			</th:block>
+			<br>
+			<th:block th:if="${validadorR == 0}">
+				<a th:href="@{/cadastrarReview/{id}(id=${jogo.idJogo})}"><span>Escreva
+					sua review!</span></a>
+			</th:block>
+			<th:block th:if="${validadorR > 0}">
+				<p class = "h3">Você já fez uma Review deste jogo</p>
+			</th:block>
+			
+			<p class="h6" th:text="${'Ano: ' + jogo.ano}"></p>
+			<p class="h6">
+				Diretor : <a class="h6" th:text="${diretor.nomeDiretor}"
+					th:href="@{/detalharDiretor/{id}(id=${diretor.idDiretor})}"></a>
+			</p>
+			<p class="h6">
+				Desenvolvedora : <a class="h6"
+					th:text="${desenvolvedora.nomeDesenvolvedora}"
+					th:href="@{/detalharDesenvolvedora/{id}(id=${desenvolvedora.idDesenvolvedora})}"></a>
+			</p>
+			<p class="h6">
+				Modo de Jogo : <a class="h6" th:text="${modoJogo.nomeModo}"
+					th:href="@{/detalharModoJogo/{id}(id=${modoJogo.idModo})}"></a>
+			</p>
+			<p class="h6">
+				Classificação : 
+				
+				<a class="h6"
+					th:text="${classificacao.nomeClassificacao}"
+					th:href="@{/detalharClassificacao/{id}(id=${classificacao.idClassificacao})}"></a>
+			</p>
+			<p class="h6">
+				Plataformas : <a class="h6" th:each="plataforma : ${plataformas}"
+					th:text="${plataforma.nomePlataforma + ' '}"
+					th:href="@{/detalharPlataforma/{id}(id = ${plataforma.idPlataforma})}"></a>
+			<p class="h6">
+				Generos : <a class="h6" th:each="genero:${generos}"
+					th:text="${genero.nomeGenero + ' ' }"
+					th:href="@{/detalharGenero/{id}(id = ${genero.idGenero})}"></a>
+			</p>
+			 <th:block th:if="${avg == null}">
+				<p class="h6" th:text="'Nota : Sem notas de reviews ' ">
+			</th:block>
+			<th:block th:if="${avg != null}">
+				<p class="h6" th:text="'Nota : ' + ${avg} ">
+			</th:block>
+			<p class = "h6" th:text="${jogo.info}"></p>
+			<p class="h2 text-center">Quem já jogou?</p>
+			<table class="table">
+				<tbody>
+
+					<tr th:each="usuario : ${usuarios}">
+							<td><img th:src="@{'../' + ${usuario.foto}}"
+								class="rounded-circle z-depth-0" height="35"></img>
+						<td><a th:text="${usuario.apelido}"
+							th:href="@{/perfil/{id}(id = ${usuario.idUsuario})}"></a></td>
+					</tr>
+				</tbody>
+
+
+			</table>
+
+			<p class="h2 text-center">Reviews dos Usuários</p>
+			<div th:each="review: ${reviews} " class="media">
+				<div class="row bootstrap snippets">
+					<div class="">
+						<div class="comment-wrapper">
+							<div class="panel panel-info">
+								<div class="panel-body">
+									<ul class="media-list">
+										<li class="media">
+										<a href="#" class="pull-left"> 
+									
+                            				<th:block th:if="${review.usuario.foto != NULL}">
+                              					<img th:src="@{'../' + ${review.usuario.foto}}" class="rounded-circle z-depth-0" height="35">
+                            				</th:block>
+                            				<th:block th:if="${review.usuario.foto == NULL}">
+                             					 <img src="http://192.168.40.148:8080/semfoto.jpg" class="rounded-circle z-depth-0" height="35">
+                          				  </th:block>
+                          				  </a>
+
+											<div class="media-body">
+												<span class="text-muted pull-right"> <small
+													class="text-muted" th:text ="${review.dataCadastroReview}"></small>
+												</span> <a class="h6" th:text="${review.usuario.apelido}"
+													th:href="@{/perfil/{id}(id=${review.usuario.idUsuario})}"></a>
+												<p th:text="${review.textoReview}"></p>
+												<p th:text="'Nota dada : ' + ${review.nota}"></p>
+												<th:block th:if="${review.usuario.idUsuario == usuarioLogado.idUsuario}">
+													<a th:href = "@{/editarReview/{id}(id = ${review.idReview})}" th:text="Editar"></a>
+													<a th:href = "@{/excluirReview/{id}(id = ${review.idReview})}" th:text="Excluir"></a>
+												</th:block>
+												<th:block th:if="${review.usuario.idUsuario != usuarioLogado.idUsuario}">
+													
+												</th:block>
+											</div></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+		<div class="col md-2"></div>
+	</div>
+
+
+	<footer th:insert="footer.html"> </footer>
+
+</body>
+</html>
+

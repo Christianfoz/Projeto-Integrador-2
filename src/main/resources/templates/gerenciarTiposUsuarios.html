@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Gerenciamento de Tipos de Usuário</title>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+</head>
+<body>
+<header th:insert="header.html"></header>
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+				<table class="table">
+				<th:block th:include="mensagemSucesso.html"></th:block>
+					<caption>Lista de Tipos de Usuário Disponíveis</caption>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Tipo de Usuário</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="tipoUsuario : ${tiposusuarios}">
+							<td><span th:text="${tipoUsuario.idTipoUsuario}"></span>
+							<td><span th:text="${tipoUsuario.tipo}"></span></td>
+							<td><a
+								th:href="@{/editarTipoUsuario/{id}(id=${tipoUsuario.idTipoUsuario})}"><span
+									th:text="Editar"></span></a></td>
+							<td><a
+								th:href="@{/excluirTipoUsuario/{id}(id=${tipoUsuario.idTipoUsuario})}"><span
+									th:text="Excluir"></span></a></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+			  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

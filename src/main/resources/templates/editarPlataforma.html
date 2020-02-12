@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Edição de Plataforma</title>
+</head>
+<body>
+<header th:insert="header.html"></header>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<p class= "h1 text-center tit" th:text = "'Edição da Plataforma ' + ${plataforma.nomePlataforma}"></p>
+				<form method="post" class="form-login form">
+					<label for = "nome">Nome da Plataforma</label>
+					<input type="text" th:value="${plataforma.nomePlataforma}" name="nomePlataforma" id = "nome"  class = "form-control inp"/>
+					<label for = "ano">Ano de Lançamento</label>
+					<input type="number" th:value="${plataforma.anoLancamento}" name="anoLancamento" id = "ano"  class = "form-control inp"/>
+					<div class="botoes">
+						<a class="btn btn-danger" href="../gerenciarPlataformas" role="button">Cancelar</a>
+						<button class="btn btn-primary " type="submit">Enviar</button>
+					</div>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http;//thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+<meta charset="UTF-8">
+
+<title>Edição de Review</title>
+</head>
+<body>
+	<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+		<header th:insert="header.html"> </header>
+	</th:block>
+	<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+		<header th:insert="headerUser.html"></header>
+	</th:block>
+
+	<!-- ESCREVA SUA REVIEW PARA O JOGO <span th:text = "${jogo.titulo}"></span>  -->
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 conteudo">
+			<p class="h1 text-center tit"
+				th:text="'Edite sua Review para o Jogo ' + ${review.jogo.titulo}"></p>
+			<form method="post">
+				<label for="nota" th:text="'Sua nota para o jogo ' + ${review.jogo.titulo}">
+				</label> <select name="nota" class="custom-select">
+					<option th:each="i : ${#numbers.sequence(0, 10)}" th:text="${i}"></option>
+				</select> <label for="info"
+					th:text="'Sua opinião para o jogo ' + ${review.jogo.titulo}"> </label>
+				<textarea class="form-control" name="textoReview" rows="5" id="info" th:text="${review.textoReview}"></textarea>
+				<div class="botoes">
+					<a class="btn btn-danger" href="../index" role="button">Cancelar</a>
+					<button class="btn btn-primary " type="submit">Enviar</button>
+				</div>
+			</form>
+			<br> <br> <br> <br> <br> <br> <br>
+			<br> <br> <br>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

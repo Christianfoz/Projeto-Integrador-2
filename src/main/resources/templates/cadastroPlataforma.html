@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" th:href = "meucss.css">
+	
+
+<meta charset="UTF-8">
+<title>Cadastro de Plataforma</title>
+</head>
+<body>
+  <header th:insert="header.html"></header>
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<p class= "h1 text-center tit">Cadastro de Plataforma</p>
+				<form method="post" class="form-login form">
+					<label for="plataforma">Nome da Plataforma</label>
+					 <input type="text" value="" name="nomePlataforma" id="plataforma" class = "form-control inp" placeholder = "Digite a Plataforma" />
+					 <label for="ano">Ano de Lançamento</label>
+					 <input type="number" value="" name="anoLancamento" id="ano" class = "form-control inp" placeholder = "Digite o Ano de Lançamento(opcional)" />
+					<div class="botoes">
+						<a class="btn btn-danger" href="index" role="button">Cancelar</a>
+						<button class="btn btn-primary " type="submit">Enviar</button>
+					</div>
+				</form>
+				<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

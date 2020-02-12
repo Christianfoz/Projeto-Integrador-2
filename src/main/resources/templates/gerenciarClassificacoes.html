@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Gerenciamento de Classificações</title>
+</head>
+<body>
+<header th:insert="header.html"></header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 principal">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			
+			<th:block th:if = "${classificacoes == NULL}">
+				<p class="h1">Não há classificações</p>
+			</th:block>
+		
+		<th:block th:if = "${classificacoes != NULL}">
+				<table class="table">
+					<caption>Lista de Classificações Etárias Disponíveis</caption>
+
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Classificação</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="classificacao : ${classificacoes}">
+							<td><span th:text="${classificacao.idClassificacao}"></span>
+							<td><a
+								th:href="@{/detalharClassificacao/{id}(id=${classificacao.idClassificacao})}">
+									<span th:text="${classificacao.nomeClassificacao}"></span>
+							</a></td>
+							<td><a
+								th:href="@{/editarClassificacao/{id}(id=${classificacao.idClassificacao})}"><span
+									th:text="Editar"></span></a></td>
+							<td><a
+								th:href="${(#mvc.url('CC#excluirClassificacao').arg(0, classificacao.idClassificacao)).build()}"><span
+									th:text="Excluir"></span></a></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+				
+				</th:block>
+				<div class="botoes">
+					<a class="btn btn-danger" href="index" role="button">Voltar</a>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+
+	</div>
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

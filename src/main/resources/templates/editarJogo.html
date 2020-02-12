@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Edição de Jogo</title>
+</head>
+
+<body>
+  <header th:insert="header.html"></header>
+	<div class="row">
+			<div class = "col-md-4"></div>
+			<div class = "col-md-4  principal">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<p class= "h1 text-center tit" th:text = "'Edição do Jogo ' + ${jogo.titulo}"></p>
+			<form method="post" id="formulario" enctype="multipart/form-data" class="form-login">
+				<label for= "titulo" class = "label">Jogo</label>
+				<input type="text" value="" name="titulo" id = "titulo" class = "form-control inp" th:value="${jogo.titulo}"/>
+				<label for= "file" class = "label">Capa</label>
+				<input type="file" name="file" id= "file" class = "form-control-file" /> 
+				<label for= "ano" class = "label">Ano</label>
+				<input type="text" value="" name="ano" id = "ano" class = "form-control inp" th:value="${jogo.ano}"/>
+				<label for = "info" class = "label">Informações</label>
+				<textarea class="form-control"  name = "info" rows="5" id="info" th:value="${jogo.info}"></textarea>
+				<label for = "classificacao" class = "label">Classificação Indicativa</label>
+				<select th:field="*{classificacao.idClassificacao}" form="formulario" name="classificacao" id="classificacao" class="custom-select">
+					<th:block th:each = "classificacao : ${classificacoes}" th:if = "${classificacao.idClassificacao == jogo.classificacao.idClassificacao}">
+						<option
+							th:value="${classificacao.idClassificacao}"
+							th:text="${classificacao.nomeClassificacao}"
+							selected >
+					</option>
+					</th:block>
+						<th:block th:each = "classificacao : ${classificacoes}" th:if = "${classificacao.idClassificacao != jogo.classificacao.idClassificacao}">
+						<option
+							th:value="${classificacao.idClassificacao}"
+							th:text="${classificacao.nomeClassificacao}"
+							selected >
+					</option>
+					</th:block>
+				
+				
+				</select>
+				<label class = "label" for = "diretor">Diretor</label>
+				<select th:field="*{diretor.idDiretor}" form="formulario"
+					name="diretor" id="diretor" class="custom-select">
+					<th:block th:each = "diretor : ${diretores}" th:if = "${diretor.idDiretor == jogo.diretor.idDiretor}">
+						<option
+							th:value="${diretor.idDiretor}"
+							th:text="${diretor.nomeDiretor}"
+							selected >
+					</option>
+					</th:block>
+					<th:block th:each = "diretor : ${diretores}" th:if = "${diretor.idDiretor != jogo.diretor.idDiretor}">
+						<option
+							th:value="${diretor.idDiretor}"
+							th:text="${diretor.nomeDiretor}"
+						 >
+					</option>
+					</th:block>
+				</select>
+				<label for = "desenvolvedora" class = "label">Desenvolvedora</label>
+				<select th:field="*{desenvolvedora.idDesenvolvedora}" form="formulario" name="desenvolvedora" id="desenvolvedora" class="custom-select">
+					<th:block th:each = "desenvolvedora : ${desenvolvedoras}" th:if = "${desenvolvedora.idDesenvolvedora == jogo.desenvolvedora.idDesenvolvedora}">
+						<option
+							th:value="${desenvolvedora.idDesenvolvedora}"
+							th:text="${desenvolvedora.nomeDesenvolvedora}"
+							selected >
+					</option>
+					</th:block>
+					<th:block th:each = "desenvolvedora : ${desenvolvedoras}" th:if = "${desenvolvedora.idDesenvolvedora != jogo.desenvolvedora.idDesenvolvedora}">
+						<option
+							th:value="${desenvolvedora.idDesenvolvedora}"
+							th:text="${desenvolvedora.nomeDesenvolvedora}"
+						 >
+					</option>
+					</th:block>
+				</select> 
+				<label for = "modoJogo" class = "label">Modo de Jogo</label>
+				<select th:field="*{modoJogo.idModo}" form="formulario" name="modoJogo" id="modoJogo" class="custom-select">
+				<th:block th:each = "modoJogo : ${modoJogos}" th:if = "${modoJogo.idModo == jogo.modoJogo.idModo}">
+						<option
+							th:value="${modoJogo.idModo}"
+							th:text="${modoJogo.nomeModo}"
+							selected >
+					</option>
+					</th:block>
+					<th:block th:each = "modoJogo : ${modoJogos}" th:if = "${modoJogo.idModo != jogo.modoJogo.idModo}">
+						<option
+							th:value="${modoJogo.idModo}"
+							th:text="${modoJogo.nomeModo}"
+						 >
+					</option>
+					</th:block>
+					<!--  <option th:each="modoJogo : ${modoJogos}"
+						th:value="${modoJogo.idModo}" th:text="${}">
+					</option>
+					-->
+				</select>
+				<label for = "plataformas" class = "label">Plataformas</label>
+				<ul id = "plataformas">
+					<li th:each="plataforma : ${plataformas}">
+						<input type="checkbox" name="plataformas" th:value="${plataforma.idPlataforma}" class = "form-check-input" /> 
+						<label th:text="${plataforma.nomePlataforma}"></label>
+					</li>
+				</ul>
+
+				<label for = "generos" class = "label">Gêneros</label>
+				<ul id = "generos">
+					<li th:each="genero : ${generos}">
+						<input type="checkbox"name="generos" th:value="${genero.idGenero}" class = "form-check-input"/>
+						<label th:text="${genero.nomeGenero}"></label></li>
+				</ul>
+				<div class="botoes">
+						<a class="btn btn-danger" href="index" role="button">Cancelar</a>
+						<button class="btn btn-primary " type="submit">Enviar</button>
+				</div>
+
+			</form>
+		</div>
+		<div class = "col-md-4"></div>
+	</div>
+
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

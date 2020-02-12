@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="ISO-8859-1">
+<title>Gerenciamento de Desenvolvedoras</title>
+
+</head>
+<body>
+<header th:insert="header.html"></header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 principal">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			
+			<th:block th:if = "${desenvolvedoras == NULL}">
+				<p class="h1">Nenhum jogo encontrado!</p>
+			</th:block>
+		
+			<th:block th:if = "${desenvolvedoras != NULL}">
+				<table class="table">
+					<caption>Lista de Desenvolvedoras Disponíveis</caption>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Desenvolvedora</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="desenvolvedora : ${desenvolvedoras}">
+							<td><span th:text="${desenvolvedora.idDesenvolvedora}"></span>
+							<td><a
+								th:href="@{/detalharDesenvolvedora/{id}(id=${desenvolvedora.idDesenvolvedora})}">
+									<span th:text="${desenvolvedora.nomeDesenvolvedora}"></span>
+							</a></td>
+							<td><a
+								th:href="@{/editarDesenvolvedora/{id}(id=${desenvolvedora.idDesenvolvedora})}"><span
+									th:text="Editar"></span></a></td>
+							<td><a
+								th:href="${(#mvc.url('DC#excluirDesenvolvedora').arg(0, desenvolvedora.idDesenvolvedora)).build()}"><span
+									th:text="Excluir"></span></a></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+				
+				</th:block>
+				<div class="botoes">
+					<a class="btn btn-danger" href="index" role="button">Voltar</a>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+
+		</div>
+	</div>
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

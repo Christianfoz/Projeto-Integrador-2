@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+<meta charset="UTF-8">
+<title>Gerenciamento de Sugestões</title>
+</head>
+<body>
+<header th:insert="header.html"></header>
+<div class = "row">
+<div class = "col-md-4"></div>
+<div class = "col-md-4 conteudo">
+<table class="table">
+		<thead>
+			<tr>
+				<th>ID da Sugestao</th>
+				<th>Titulo</th>
+				<th></th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr th:each="sugestao : ${sugestoesF}">
+				<td><span th:text="${sugestao.idSugestao}"></span>
+				<td><span th:text="${sugestao.titulo}"></span>
+				<td><a th:href="@{/detalharSugestao/{id}(id=${sugestao.idSugestao})}">Ver</a></td>				
+			</tr>
+		</tbody>
+	
+	</table>
+	</div>
+	<div class = "col-md-4"></div>
+	</div>
+			  <footer th:insert="footer.html"> </footer>
+	
+</body>
+</html>

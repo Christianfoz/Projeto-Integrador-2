@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Gerenciamento de Plataformas</title>
+</head>
+<body>
+<header th:insert="header.html"></header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+				<table class="table">
+				<th:block th:include="mensagemSucesso.html"></th:block>
+					<caption>Lista de Plataformas Disponíveis</caption>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Plataforma</th>
+							<th>Ano</th>
+							<th>Editar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="plataforma : ${plataformas}">
+							<td><span th:text="${plataforma.idPlataforma}"></span>
+							<td><a th:href="@{/detalharPlataforma/{id}(id=${plataforma.idPlataforma})}"><span th:text="${plataforma.nomePlataforma}"></span></a></td>
+							<td><span th:text="${plataforma.anoLancamento}"></span></td>
+							<td><a
+								th:href="@{/editarPlataforma/{id}(id=${plataforma.idPlataforma})}"><span
+									th:text="Editar"></span></a></td>
+							<td><a
+								th:href="${(#mvc.url('PC#excluirPlataforma').arg(0, plataforma.idPlataforma)).build()}"><span
+									th:text="Excluir"></span></a></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+				<div class="botoes">
+					<a class="btn btn-danger" href="index" role="button">Voltar</a>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+		  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

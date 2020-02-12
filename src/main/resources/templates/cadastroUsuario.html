@@ -1,0 +1,41 @@
+	
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" th:href = "meucss.css">
+
+<meta charset="UTF-8">
+<title>Cadastro de Usuário</title>
+</head>
+<body>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 conteudo">
+			<th:block th:include="mensagemSucesso.html"></th:block>
+			<p class= "h1 text-center tit">Cadastro de Usuário</p>
+				<form method="post" class="form-login  form" enctype="multipart/form-data">
+					<label for="email">Email</label>
+					 <input type="text" value="" name="email" id="email" class = "form-control inp" placeholder = "Digite seu email" />
+					 <label for="senha">Senha</label>
+					 <input type="password" value="" name="senha" id="senha" class = "form-control inp" placeholder = "Digite uma senha" />
+					 <label for="apelido">Apelido (NickName)</label>
+					 <input type="text" value="" name="apelido" id="apelido" class = "form-control inp" placeholder = "Digite um apelido" />
+   		 			 <label for="file">Escolha uma foto(Opcional)</label>					 
+					 <input type="file" name = "file" class="form-control inp" id="file" aria-describedby="inputGroupFileAddon01">
+					<div class="botoes">
+						<a class="btn btn-danger" href="../login" role="button">Cancelar</a>
+						<button class="btn btn-primary " type="submit">Enviar</button>
+					</div>
+				</form>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	  <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

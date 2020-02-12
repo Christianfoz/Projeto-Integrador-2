@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" th:href = "meucss.css">
+
+<meta charset="UTF-8">
+<title>Cadastro de Sugestão</title>
+</head>
+<body>
+
+<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+    <header th:insert="header.html"> </header>
+  </th:block>
+  <th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+  	<header th:insert = "headerUser.html"></header>
+  </th:block>
+  <div class = "row">
+  	<div class = "col-md-4"></div>
+  	<div class = "col-md-4 conteudo">
+  <p  class = "h2 text-center tit">Quer sugerir algum jogo ou melhoria?</p>
+  
+  <form method = "post" class="form-login">
+  <th:block th:include="mensagemSucesso.html"></th:block>
+  	<label for= "titulo" class = "label">Titulo</label>
+	<input type="text" value="" name="titulo" id = "titulo" class = "form-control inp"/>
+  	<label for = "info" class = "label">Sua Sugestão</label>
+	<textarea class="form-control"  name = "textoSugestao" rows="5" id="info"></textarea>
+  	<div class="botoes">
+		<a class="btn btn-danger" href="../index" role="button">Cancelar</a>
+		<button class="btn btn-primary " type="submit">Enviar</button>
+	</div>
+  
+  </form>
+  
+  <br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+	
+  
+  </div>
+  <div class = "col-md-4"></div>
+  </div>
+  
+  
+<footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

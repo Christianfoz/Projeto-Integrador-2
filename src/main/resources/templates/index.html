@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<!-- 
+ file:C:\Users\User\Desktop\tudo\trabalhoespaço\omg\src\main\resources\static\fotojogo
+ -->
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+
+	<style>
+	.navbar{
+	background-color : blue;
+	
+	}
+	
+	.conteudo{
+		background-color:white;
+	}
+	
+	body{
+		background-image: url("https://mypst.com.br/new/media/img/bg8.jpg");
+		  background-repeat: repeat;
+		
+	}
+	
+	.tit{
+		margin-top: 100px;
+	}
+	
+	.novoJogo{
+		float:bottom;
+		margin-top:10px;
+	}
+	
+	.capa{
+		height:225px;
+		width:225px;
+	}
+	</style>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+  <th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+    <header th:insert="header.html"> </header>
+  </th:block>
+  <th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+  	<header th:insert = "headerUser.html"></header>
+  </th:block>
+  
+  <div class = "row">
+  	<div class = "col-md-3"></div>
+  	<div class = "col-md-6 conteudo">
+  	<th:block th:include="mensagemSucesso.html"></th:block>
+  	
+  		<p class= "h4 text-center tit">Bem-vindo ao site! Aqui você poderá criar reviews e colocar jogos em sua lista de Jogados!</p>
+  		
+  		<p class = "h4 text-center tit">Últimos jogos adicionados ao site</p>
+  		
+  		
+			<div th:each=" jogo : ${jogosNovos}" class = "novoJogo">
+				<img th:src ="${jogo.foto}" class = "capa"></img>
+				<a th:href="@{/detalharJogo/{id}(id=${jogo.idJogo})}"> <span th:text="${jogo.titulo}"></span></a>				
+			</div>
+			
+			
+			<p class = "h4 text-center tit">Esses são os últimos usuários cadastrados! Bem-vindos!</p>	
+			
+			<div th:each=" usuario : ${usuariosNovos}" class = "novoJogo">
+				<img th:src ="${usuario.foto}" class = "capa"></img>
+				<a th:href="@{/perfil/{id}(id=${usuario.idUsuario})}"> <span th:text="${usuario.apelido}"></span></a>				
+			</div>			
+	
+  		
+  		
+  		
+  		
+  	
+  	
+  	
+  	
+  	
+  	</div>
+  	<div class = "col-md-3"></div>
+  	
+  </div>
+
+<th:block th:include="mensagemSucesso.html"></th:block>
+  <footer th:insert="footer.html"> </footer>
+</body>
+</html>

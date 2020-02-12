@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+
+<meta charset="UTF-8">
+<title>Gerenciamento de Reviews</title>
+</head>
+<body>
+	<header th:insert="header.html"></header>
+
+
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 conteudo">
+			<table class="table">
+				<th:block th:include="mensagemSucesso.html"></th:block>
+				<caption>Reviews a Serem Aprovadas</caption>
+				<thead>
+					<tr>
+						<th>Apelido do usuario</th>
+						<th>Review</th>
+						<th>Nota</th>
+						<th>Jogo</th>
+						<th>Ver</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="review : ${reviewsF}">
+						<td><span th:text="${review.usuario.apelido}"></span>
+						<td><span th:text="${review.textoReview}"></span></td>
+						<td><span th:text="${review.nota}"></span></td>
+						<td><span th:text="${review.jogo.titulo}"></span></td>
+						<td><a
+							th:href="@{/detalharReview/{id}(id=${review.idReview})}"><span
+								th:text="Ver"></span></a></td>
+
+					</tr>
+				</tbody>
+
+			</table>
+		
+		</div>
+		<div class="col-md-4"></div>
+
+	</div>
+	
+
+	<footer th:insert="footer.html"> </footer>
+
+
+
+
+</body>
+</html>

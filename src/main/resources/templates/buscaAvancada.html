@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" th:href = "meucss.css">
+
+<meta charset="UTF-8">
+<title>Busca Avançada</title>
+</head>
+
+	
+<body>
+<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+    <header th:insert="header.html"> </header>
+  </th:block>
+  <th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+  	<header th:insert = "headerUser.html"></header>
+  </th:block>
+<div class = "row">
+	<div class = "col-md-4"></div>
+	<div class = "col-md-4 conteudo">
+		<p class= "h2 text-center tit" th:text="${usuarioLogado.apelido} + ', Use a busca Avançada para achar um jogo '">
+		<br>
+		<hr>
+		<p class= "h2 text-center tit">Busca por Classificação</p>
+		<hr>
+		<form method = "GET" th:action = "@{/buscarJogoPorClassificacao}" id= "formulario">
+		<select  form="formulario" name="id" id = "id" class="custom-select">
+					<option th:each="classificacao : ${classificacoes}"
+						th:value="${classificacao.idClassificacao}"
+						th:text="${classificacao.nomeClassificacao}">
+					</option>
+				</select>
+				<div class = "botoes">
+				<button class="btn btn-primary " type="submit">Pesquisar</button>
+				</div>
+		</form>
+		<br>
+		<hr>
+		<p class= "h2 text-center tit">Busca por Diretor</p>
+		<hr>
+		<form method = "GET" th:action = "@{/buscarJogoPorDiretor}" id= "formulario2">
+		<select form="formulario2" name="id" id = "id" class="custom-select">
+					<option th:each="diretor : ${diretores}"
+						th:value="${diretor.idDiretor}"
+						th:text="${diretor.nomeDiretor}">
+					</option>
+				</select>
+				<div class = "botoes">
+				<button class="btn btn-primary " type="submit">Pesquisar</button>
+				</div>
+				</form>
+		<br>
+		<hr>
+		<p class= "h2 text-center tit">Busca por Desenvolvedora</p>
+		<hr>
+		<form method = "GET" th:action = "@{/buscarJogoPorDesenvolvedora}" id= "formulario3">
+		<select form="formulario3" name="id" id = "id" class="custom-select">
+					<option th:each="desenvolvedora : ${desenvolvedoras}"
+						th:value="${desenvolvedora.idDesenvolvedora}"
+						th:text="${desenvolvedora.nomeDesenvolvedora}">
+					</option>
+				</select>
+				<div class = "botoes">
+				<button class="btn btn-primary " type="submit">Pesquisar</button>
+				</div>
+				</form>
+		<br>
+		<hr>
+		<p class= "h2 text-center tit">Busca por Genero</p>
+		<hr>
+		<form method = "GET" th:action = "@{/buscarJogoPorGenero}" id= "formulario4">
+		<select form="formulario4" name="id" id = "id" class="custom-select">
+					<option th:each="genero : ${generos}"
+						th:value="${genero.idGenero}"
+						th:text="${genero.nomeGenero}">
+					</option>
+				</select>
+				<div class = "botoes">
+				<button class="btn btn-primary " type="submit">Pesquisar</button>
+				</div>
+				</form>
+		<br>
+		<hr>
+		<p class= "h2 text-center tit">Busca por Modo de Jogo</p>
+		<hr>
+		<form method = "GET" th:action = "@{/buscarJogoPorModo}" id= "formulario5">
+		<select form="formulario5" name="id" id = "id" class="custom-select">
+					<option th:each="modoJogo : ${modoJogos}"
+						th:value="${modoJogo.idModo}"
+						th:text="${modoJogo.nomeModo}">
+					</option>
+				</select>
+				<div class = "botoes">
+				<button class="btn btn-primary " type="submit">Pesquisar</button>
+				</div>
+				</form>
+		<br>
+		<hr>
+		<p class= "h2 text-center tit">Busca por Plataforma</p>
+		<hr>
+		<form method = "GET" th:action = "@{/buscarJogoPorPlataforma}" id= "formulario6">
+		<select form="formulario6" name="id" id = "id" class="custom-select">
+					<option th:each="plataforma : ${plataformas}"
+						th:value="${plataforma.idPlataforma}"
+						th:text="${plataforma.nomePlataforma}">
+					</option>
+				</select>
+				<div class = "botoes">
+				<button class="btn btn-primary " type="submit">Pesquisar</button>
+				</div>
+				</form>
+	
+	</div>
+	
+	
+	<div class = "col-md-4"></div>
+</div>
+ <footer th:insert="footer.html"> </footer>
+
+</body>
+</html>

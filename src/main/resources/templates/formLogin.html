@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" th:href = "bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" th:href = "meucss.css">
+
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+
+
+<body>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 form">
+				<form method="post" class = "form-login">
+					<label for = "email">Email</label>
+					<input type="text" value="" name="email" class = "form-control inp" id = "email" placeholder = "Digite seu email de acesso"/> 
+					<label for = "senha">Senha</label>
+					<input type="password" value="" name="senha" class = "form-control inp" id = "senha" placeholder = "Sua senha de acesso" />
+					<div class = "btnLogar">
+						<button class="btn btn-primary btn-lg" type="submit">Entrar</button>
+					</div>
+					<p>Não tem uma conta?</p>
+					<p><a href = "cadastroUsuario">Cadastre-se clicando aqui</a></p>
+
+				</form>
+			</div>
+			<div class = "col-md-4"></div>
+		</div>
+ <footer th:insert="footer.html"> </footer>
+		
+</body>
+</html>

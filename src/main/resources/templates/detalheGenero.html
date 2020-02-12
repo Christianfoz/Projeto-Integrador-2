@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "../bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "../meucss.css">
+<meta charset="UTF-8">
+<title>Detalhes do Gênero</title>
+</head>
+<body>
+	<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario ==  1}">
+		<header th:insert="header.html"> </header>
+	</th:block>
+	<th:block th:if="${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+		<header th:insert="headerUser.html"></header>
+	</th:block>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 principal">
+		
+		
+		<th:block th:if = "${jogos == NULL}">
+			<p class="h1">Nenhum jogo encontrado!</p>
+		</th:block>
+		
+		<th:block th:if = "${jogos != NULL}">
+			
+
+
+
+			<th:block th:if = "${usuarioLogado.tipoUsuario.idTipoUsuario == 1}">
+			
+		
+
+
+			<h1
+				th:text="'Mostrando Jogos do Genero  '+${genero.nomeGenero}"></h1>
+
+
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Titulo</th>
+						<th>Ano</th>
+						<th>Info</th>
+						<th>Editar</th>
+						<th>Excluir</th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="jogo : ${jogos}">
+						<td><span th:text="${jogo.titulo}"></span></td>
+						<td><span th:text="${jogo.ano}"></span></td>
+						<td><span th:text="${jogo.info}"></span></td>
+						<td><a th:href="@{/editarJogo/{id}(id=${jogo.idJogo})}"><span
+								th:text="Editar"></span></a></td>
+						<td><a th:href="@{/excluirJogo/{id}(id=${jogo.idJogo})}"><span
+								th:text="Excluir"></span></a></td>
+
+					</tr>
+				</tbody>
+
+			</table>
+			
+			</th:block>
+			<th:block th:if = "${usuarioLogado.tipoUsuario.idTipoUsuario == 2}">
+				<h1
+				th:text="'Mostrando Jogos do Genero  '+${genero.nomeGenero}"></h1>
+
+
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Titulo</th>
+						<th>Ano</th>
+						<th>Info</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="jogo : ${jogos}">
+						<td><span th:text="${jogo.titulo}"></span></td>
+						<td><span th:text="${jogo.ano}"></span></td>
+						<td><span th:text="${jogo.info}"></span></td>
+						
+
+					</tr>
+				</tbody>
+
+			</table>
+			</th:block>
+			<div class="botoes">
+				<a class="btn btn-danger" href="../gerenciarGeneros" role="button">Voltar</a>
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+			  
+		
+	</div>
+<footer th:insert="footer.html"> </footer>
+
+
+
+
+</body>
+</html>
